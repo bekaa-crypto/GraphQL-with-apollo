@@ -1,23 +1,27 @@
+// products.resolvers.js
+// Resolvers connect GraphQL queries/mutations to the products model
+
 const productsModel = require('./products.model');
 
 module.exports = {
   Query: {
-    products: () => {
-      return productsModel.getAllProducts();
-    },
-    productsByPrice: (_, args) => {
-      return productsModel.getProductsByPrice(args.min, args.max);
-    },
-    product: (_, args) => {
-      return productsModel.getProductById(args.id);
-    }
+    // Fetch all products
+    products: () => productsModel.getAllProducts(),
+
+    // Fetch products within a price range
+    productsByPrice: (_, args) => productsModel.getProductsByPrice(args.min, args.max),
+
+    // Fetch a single product by ID
+    product: (_, args) => productsModel.getProductById(args.id),
   },
+
   Mutation: {
-    addNewProduct: (_, args) => {
-      return productsModel.addNewProduct(args.id, args.description, args.price);
-    },
-    addNewProductReview: (_, args) => {
-      return productsModel.addNewProductReview(args.id, args.rating, args.comment);
-    }
+    // Add a new product
+    addNewProduct: (_, args) =>
+      productsModel.addNewProduct(args.id, args.description, args.price),
+
+    // Add a new review to a product
+    addNewProductReview: (_, args) =>
+      productsModel.addNewProductReview(args.id, args.rating, args.comment),
   }
 };

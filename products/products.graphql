@@ -1,7 +1,10 @@
+# products.graphql
+# Types and operations for products and reviews
+
 type Query {
-  products: [Product]
-  productsByPrice(min: Float!, max: Float!): [Product]
-  product(id: ID!): Product
+  products: [Product]                       # All products
+  productsByPrice(min: Float!, max: Float!): [Product]  # Products filtered by price
+  product(id: ID!): Product                 # Single product by ID
 }
 
 type Mutation {
@@ -12,8 +15,8 @@ type Mutation {
 type Product {
   id: ID!
   description: String!
-  reviews: [Review]
   price: Float!
+  reviews: [Review]
 }
 
 type Review {

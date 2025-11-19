@@ -1,14 +1,24 @@
+# orders.graphql
+# GraphQL types for Orders
+
 type Query {
+  # Returns a list of all orders
   orders: [Order]
 }
 
 type Order {
-  date: String!
-  subtotal: Float!
-  items: [OrderItem]
+  date: String! # Date of the order
+  subtotal: Float! # Total cost of the order
+  items: [OrderItem] # Products in the order
 }
 
 type OrderItem {
-  product: Product!
-  quantity: Int!
+  product: Product! # Product details
+  quantity: Int! # Quantity ordered
+}
+
+type Product {
+  id: ID!
+  description: String!
+  price: Float!
 }
